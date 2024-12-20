@@ -13,5 +13,6 @@ public:
 	vector<vector<int>> merge(vector<vector<int>>& intervals);
 	void rotate(vector<int>& nums, int k);
 	vector<int> productExceptSelf(vector<int>& nums);
+	int firstMissingPositive(vector<int>& nums);
 };
 

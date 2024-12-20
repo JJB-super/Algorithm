@@ -129,7 +129,49 @@ void Solution :: rotate(vector<int>& nums, int k) {
     nums = rd;
 }
 
-/*给你一个整数数组 nums，返回 数组 answer ，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积 。*/
-vector<int> Solution :: productExceptSelf(vector<int>& nums) {
+/*给你一个整数数组 nums，返回 数组 answer ，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积 (禁止使用 除法 /)。*/
+vector<int> Solution::productExceptSelf(vector<int>& nums) {
+    int len = nums.size();
+    vector<int> left(len);
+    vector<int> right(len);
+    vector<int> ans(len);
+    for (int i = 0; i < len; ++i) {
+        if (i == 0) {
+            left[i] = 1;
+            right[len - 1 - i] = 1;
+        }
+        else {
+            left[i] = left[i - 1] * nums[i - 1];
+            right[len - 1 - i] = right[len - i] * nums[len - i];
+        }
+    }
+    for (int i = 0; i < len; ++i) {
+        ans[i] = left[i] * right[i];
+    }
+    return ans;
+}
 
+/*给你一个未排序的整数数组 nums ，请你找出其中没有出现的最小的正整数。
+请你实现时间复杂度为 O(n) 并且只使用常数级别额外空间的解决方案。*/
+int Solution::firstMissingPositive(vector<int>& nums) {
+    int len = nums.size();
+    for (int i = 0; i < len; ++i) {
+        if (nums[i] <= 0) {
+            nums[i] = (len + 1);
+        }
+    }
+    int y = 1;
+    int j = -y;
+    for (int i = 0; i < len; ++i) {
+        int local = abs(nums[i]);
+        if (local <= len) {
+            nums[local - 1] = -abs(nums[local - 1]);
+        }
+    }
+    for (int i = 0; i < len; ++i) {
+        if (nums[i] > 0) {
+            return (i + 1);
+        }
+    }
+    return (len + 1);
 }
