@@ -14,5 +14,7 @@ public:
 	void rotate(vector<int>& nums, int k);
 	vector<int> productExceptSelf(vector<int>& nums);
 	int firstMissingPositive(vector<int>& nums);
+	void setZeroes(vector<vector<int>>& matrix);
+	vector<int> spiralOrder(vector<vector<int>>& matrix);
 };
 
