@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SOLUTION_H
+#define SOLUTION_H
 #include <iostream>
 #include <string>
 #include<unordered_map>
@@ -14,5 +15,6 @@ public:
 	void rotate(vector<int>& nums, int k);
 	vector<int> productExceptSelf(vector<int>& nums);
 	int firstMissingPositive(vector<int>& nums);
+	void setZeroes(vector<vector<int>>& matrix);
 };
-
+#endif
