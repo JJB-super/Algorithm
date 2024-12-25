@@ -177,6 +177,29 @@ int Solution::firstMissingPositive(vector<int>& nums) {
 }
 
 /*给定一个 m x n 的矩阵，如果一个元素为 0 ，则将其所在行和列的所有元素都设为 0 ,请使用原地算法*/
-void Solution::setZeroes(vector<vector<int>>& matrix) {
+void Solution::setZeroes(vector<vector<int>>&matrix) {
+    int r = matrix.size();
+    int c = matrix[0].size();
+    vector<bool> row(r);
+    vector<bool> col(c);
+    for (int i = 0; i < r; ++i) {
+        for (int j = 0; j < c; ++j) {
+            if (matrix[i][j] == 0) {
+                row[i] = true;
+                col[j] = true;
+            }
+        }
+    }
+    for (int i = 0; i < r; ++i) {
+        for (int j = 0; j < c; ++j) {
+            if (row[i] || col[j]) {
+                matrix[i][j] = 0;
+            }
+        }
+    }
+}
+
+/*给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素*/
+vector<int> Solution::spiralOrder(vector<vector<int>>& matrix) {
 
 }
