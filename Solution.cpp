@@ -201,5 +201,45 @@ void Solution::setZeroes(vector<vector<int>>&matrix) {
 
 /*给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素*/
 vector<int> Solution::spiralOrder(vector<vector<int>>& matrix) {
-
+    int m = matrix.size();
+    int n = (int)matrix[0].size();
+    int top = 0;
+    int buttom = m;
+    int left = 0;
+    int right = n;
+    int r = 0;
+    int c = 0;
+    vector<int> ans;
+    for (int i = 0; i < m * n; ++i) {
+        if ((c < right-1) && (r == top)) {
+            ans.emplace_back(matrix[r][c++]);
+            continue;
+        }
+        if (c == right-1) {
+            if (r < buttom-1) {
+                ans.emplace_back(matrix[r++][right-1]);
+                continue;
+            }
+        }
+        if (r == buttom-1) {
+            if (c > left) {
+                ans.emplace_back(matrix[buttom-1][c--]);
+                continue;
+            }
+        }
+        if (c == left) {
+            if (r > top) {
+                ans.emplace_back(matrix[r--][left]);
+            }
+            if (r == top) {
+                top++;
+                left++;
+                buttom--;
+                right--;
+                r = top;
+                c = left;
+            }
+        }
+    }
+    return ans;
 }
