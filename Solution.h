@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SOLUTION_H
+#define SOLUTION_H
 #include <iostream>
 #include <string>
 #include<unordered_map>
@@ -17,4 +18,4 @@ public:
 	void setZeroes(vector<vector<int>>& matrix);
 	vector<int> spiralOrder(vector<vector<int>>& matrix);
 };
-
+#endif

@@ -1,6 +1,5 @@
 
 #include "Solution.h"
-using namespace std;
 /*给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 "" */
 string Solution :: minWindow(string s, string t)
 {
@@ -201,45 +200,54 @@ void Solution::setZeroes(vector<vector<int>>&matrix) {
 
 /*给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素*/
 vector<int> Solution::spiralOrder(vector<vector<int>>& matrix) {
-    int m = matrix.size();
-    int n = (int)matrix[0].size();
-    int top = 0;
-    int buttom = m;
-    int left = 0;
-    int right = n;
-    int r = 0;
-    int c = 0;
     vector<int> ans;
-    for (int i = 0; i < m * n; ++i) {
-        if ((c < right-1) && (r == top)) {
-            ans.emplace_back(matrix[r][c++]);
-            continue;
+    int m = matrix.size();
+    int n = matrix[0].size();
+    if (matrix.empty() || m == 0 || n == 0)
+        return ans;
+    if (m == 1) {
+        return matrix[0];
+    }
+    if (n == 1) {
+        for (int i = 0; i < m; ++i) {
+            ans.emplace_back(matrix[i][0]);
         }
-        if (c == right-1) {
-            if (r < buttom-1) {
-                ans.emplace_back(matrix[r++][right-1]);
-                continue;
-            }
+        return ans;
+    }
+    int top = 0;
+    int buttom = m - 1;
+    int left = 0;
+    int right = n - 1;
+    int cnt = 0;
+    while (cnt < m*n) {
+        for (int c = left; c <= right; ++c) {
+            ans.emplace_back(matrix[top][c]);
+            cnt++;
         }
-        if (r == buttom-1) {
-            if (c > left) {
-                ans.emplace_back(matrix[buttom-1][c--]);
-                continue;
-            }
+        if (cnt == m * n) break;
+        for (int r = top + 1; r <= buttom; ++r) {
+            ans.emplace_back(matrix[r][right]);
+            cnt++;
         }
-        if (c == left) {
-            if (r > top) {
-                ans.emplace_back(matrix[r--][left]);
+        if (cnt == m * n) break;
+        for (int c = right - 1; c >= left; --c) {
+            ans.emplace_back(matrix[buttom][c]);
+            cnt++;
+        }
+        if (cnt == m * n) break;
+        for (int r = buttom - 1; r >= top; --r) {
+            if (r != top) {
+                ans.emplace_back(matrix[r][left]);
+                cnt++;
             }
-            if (r == top) {
+            else {
                 top++;
                 left++;
-                buttom--;
                 right--;
-                r = top;
-                c = left;
+                buttom--;
             }
         }
+        if (cnt == m * n) break;
     }
     return ans;
 }
