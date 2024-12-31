@@ -17,5 +17,6 @@ public:
 	int firstMissingPositive(vector<int>& nums);
 	void setZeroes(vector<vector<int>>& matrix);
 	vector<int> spiralOrder(vector<vector<int>>& matrix);
+	void rotate(vector<vector<int>>& matrix);
 };
 #endif

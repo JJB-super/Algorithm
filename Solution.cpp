@@ -251,3 +251,28 @@ vector<int> Solution::spiralOrder(vector<vector<int>>& matrix) {
     }
     return ans;
 }
+
+/*给定一个 n × n 的二维矩阵 matrix 表示一个图像。请你将图像顺时针旋转90度
+你必须在原地旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要使用另一个矩阵来旋转图像。*/
+void Solution::rotate(vector<vector<int>>& matrix) {
+    int len = matrix.size();
+    if (len >= 2) {
+        int centre = len / 2;
+        int c = len - 1;
+        int r = 0;
+        int n = c;
+        int temp;
+        while (centre--) {
+            for (int i = 0; i < n; ++i) {
+                temp = matrix[r + i][c];
+                matrix[r + i][c] = matrix[r][r + i];
+                matrix[r][r + i] = matrix[r + n - i][r];
+                matrix[r + n - i][r] = matrix[c][r + n - i];
+                matrix[c][r + n - i] = temp;
+            }
+            r++;
+            c--;
+            n = n - 2;
+        }
+    }
+}
