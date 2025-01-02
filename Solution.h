@@ -18,5 +18,6 @@ public:
 	void setZeroes(vector<vector<int>>& matrix);
 	vector<int> spiralOrder(vector<vector<int>>& matrix);
 	void rotate(vector<vector<int>>& matrix);
+	bool searchMatrix(vector<vector<int>>& matrix, int target);
 };
 #endif
